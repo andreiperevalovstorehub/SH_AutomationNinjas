@@ -4,9 +4,14 @@ Hello, we are the SH Automation Ninjas - a team dedicated to automating repetiti
 
 ## Getting Started
 
-1. **Set Up GitHub**: If you haven't already, set up your GitHub account. Make sure to configure your username and email so your contributions are correctly attributed.
-2. **Join Our Team**: If you're an SH Automation Ninja, you should already have access to this repository. If you don't, contact the repository's administrator to get added.
-3. **Clone the Repository**: Once you have access, you can clone the repository to your local machine. This will give you a copy of all the scripts and files in the repository that you can work with.
+1. **Set Up GitHub**: If you haven't already, [set up your GitHub account](https://github.com/join). Make sure to configure your username and email so your contributions are correctly attributed.
+2. **Join Our Team**: If you're an SH Automation Ninja and want to contribute, you'll need to:
+
+   - Create a GitHub account, if you haven't already.
+   - Request access to this repository. To do so, click on the 'Issues' tab in this repository, create a new issue, and use it to request access. Include your GitHub username in the request.
+
+   The repository's administrator will then give you the necessary permissions to contribute. If you've done this and still can't access the repository, please contact the repository's administrator.
+3. **Start the Training**: We've set up six self-service training sessions to help you learn the basics of using ChatGPT to create automations on Google Sheets via Google Apps Scripts. You can find the training materials in the `/training` directory in this repository.
 
 ## How to Contribute
 
