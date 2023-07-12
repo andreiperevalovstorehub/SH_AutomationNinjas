@@ -12,7 +12,11 @@ For this session, make a copy of this set of data as your [test data](https://do
 
 ## Session 2 - API Calls and Data Retrieval
 
-In the second session, we'll learn about APIs and how to call them to retrieve data. Our task will involve calling our company's API to retrieve transactions for a particular period. We'll then identify the most frequent customers from this data and organize this information in a Google Sheet.
+In the second session, we'll learn about APIs and how to call them to retrieve data. A Web API is like a waiter in a restaurant. You (the app) give it your order (request), it takes that to the kitchen (the web server), and brings back your food (data or service). It helps different software talk to each other over the internet.
+
+Our task will involve calling our company's API to retrieve transactions for a particular period. We'll then identify the most frequent customers from this data and organize this information in a Google Sheet.
+
+To get your API key, go to this [link](https://internal.shub.us/), click New Ticket and select "retrieve api key" on the drop down list. Input the login email for your employee test account and your api key will be emailed to you. 
 
 For this session, we will be using the API documented in this [Google Doc](https://docs.google.com/document/d/1gVGpmTB-8m_VfrcUY1LxRu7KTkk2Duxi5ltRyJyHNhE/edit).
 
