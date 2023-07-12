@@ -24,7 +24,11 @@ For this session, we will be using the API documented in this [Google Doc](https
 
 ## Session 3 - Building a HTML Interface and Using Triggers
 
-The third session will build upon our Google Apps Script knowledge. We will create a HTML interface that provides a summary of data, including most frequent customer, most recent visit, total visits, and amount spent in the period. We'll also learn how to use this interface to submit data to our sheet. Additionally, we'll cover using triggers within Google Apps Script to update the extracted data periodically.
+The third session will build upon our Google Apps Script knowledge. We will create a HTML interface that provides a summary of data, including most frequent customer, most recent visit, and amount spent in the period. We'll also learn how to use this interface to submit data to our sheet. Additionally, we'll cover using triggers within Google Apps Script to update the extracted data periodically.
+
+We start from what we've done in the previous session, which was to extract transactions in the last 7 days. What we would notice is that the customer name is not available in the transactions data. Instead, a customer ID is provided. So now, we would want to call our SH API, to get customer, which would return our full customer list. 
+
+Then we tell ChatGPT what columns we have on each sheet, and tell GPT that we want to have a HTML page that summarises Customer name, number of visits in last 7 days, and total spent. We also tell GPT that we want to add an additional column on the customer page, where we want to be able to submit a voucher for a customer using the HTML page. We will indicate this by typing in the customer name and hitting submit. GPT will need to generate a random 8 digit voucher code.
 
 *Learning Objective: Learn how to build a HTML interface, interact with Google Sheets data from this interface, and create periodic triggers to automate tasks.*
 
