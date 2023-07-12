@@ -24,13 +24,15 @@ For this session, we will be using the API documented in this [Google Doc](https
 
 ## Session 3 - Building a HTML Interface and Using Triggers
 
-The third session will build upon our Google Apps Script knowledge. We will create a HTML interface that provides a summary of data, including most frequent customer, most recent visit, and amount spent in the period. We'll also learn how to use this interface to submit data to our sheet. Additionally, we'll cover using triggers within Google Apps Script to update the extracted data periodically.
+Our third session extends our Google Apps Script skill set and dives into user interface creation with HTML. In this session, we will build a user-friendly HTML interface that displays a summary of key customer data, including the customer's name, their number of visits in the last seven days, and their total spend during that period. Furthermore, we'll learn how to use this interface to submit data to our Google Sheet, adding an exciting interactive component to our work.
 
-We start from what we've done in the previous session, which was to extract transactions in the last 7 days. What we would notice is that the customer name is not available in the transactions data. Instead, a customer ID is provided. So now, we would want to call our SH API, to get customer, which would return our full customer list. 
+In addition to UI creation, we'll explore how to use triggers within Google Apps Script. Triggers let us automate tasks and periodically update the extracted data without manual intervention. This hands-off approach ensures our data stays current and relevant.
 
-Then we tell ChatGPT what columns we have on each sheet, and tell GPT that we want to have a HTML page that summarises Customer name, number of visits in last 7 days, and total spent. We also tell GPT that we want to add an additional column on the customer page, where we want to be able to submit a voucher for a customer using the HTML page. We will indicate this by typing in the customer name and hitting submit. GPT will need to generate a random 8 digit voucher code.
+Building upon our previous session's work, we'll use transaction data from the last seven days. As we've previously noticed, the transactions data includes a customer ID but not the customer's name. To obtain the names, we'll call the SH API, which provides us with our full customer list. 
 
-*Learning Objective: Learn how to build a HTML interface, interact with Google Sheets data from this interface, and create periodic triggers to automate tasks.*
+We will then engage with ChatGPT, providing the columns we have on each sheet and specifying our desired outcome: a HTML page summarising customer data and a new column in the customer sheet. This new column, manipulated through our HTML page, will allow us to submit a voucher for a customer by typing in their name and clicking submit. ChatGPT will generate a random eight-digit voucher code, further personalising the customer experience.
+
+*Learning Objective: Acquire skills in building a HTML interface and interacting with Google Sheets data from this interface. Learn to create periodic triggers to automate tasks. Understand the role of unique customer identifiers and the generation of randomised voucher codes.*
 
 ## Session 4 - Communicating with ChatGPT, Code Efficiency, and Using Logger
 
