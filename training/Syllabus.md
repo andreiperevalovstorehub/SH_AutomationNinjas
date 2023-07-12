@@ -4,7 +4,7 @@ Welcome to the training syllabus for SH Automation Ninjas. This document outline
 
 ## Session 1 - Remove Duplicates and Organize Data
 
-In our first session, we'll work on a task involving a Google Sheet with three tabs. Our objective will be to create a script that removes duplicate entries from a 'New Leads' list when compared against a 'Master Contact List', and then copies the unique new leads over to a third 'Output' tab.
+In our first session, we'll work on a task involving a Google Sheet with three tabs. Our objective will be to create a script that removes duplicate email addresses from a 'New Leads' list when compared against a 'Master Contact List', and then copies the unique new leads over to a third 'Output' tab. 
 
 For this session, make a copy of this set of data as your [test data](https://docs.google.com/spreadsheets/d/1EBSwlbsk6yZd100NH0e4wpd4o07ZELXYLTMrYDv9reY/edit#gid=1552392585)
 
