@@ -1,0 +1,113 @@
+/** @OnlyCurrentDoc */
+
+function onOpen() {
+  SpreadsheetApp.getUi()
+    .createMenu('Custom Menu')
+    .addItem('Run Data', 'updateSpreadsheet')
+    .addToUi();
+}
+
+function updateSpreadsheet() {
+  var folderId = '1m9abeqPKDQ6t1rJZd8EQuNOBcGSXNw75';
+  var files = DriveApp.getFolderById(folderId).getFiles();
+  var latestFile = null;
+  var latestDate = null;
+
+  while (files.hasNext()) {
+    var file = files.next();
+    if (file.getMimeType() === 'text/csv') {
+      var date = new Date(file.getDateCreated());
+      if (latestDate === null || date > latestDate) {
+        latestDate = date;
+        latestFile = file;
+      }
+    }
+  }
+
+  if (latestFile === null) {
+    throw new Error('No CSV files found in the specified folder.');
+  }
+
+  var csvData = Utilities.parseCsv(latestFile.getBlob().getDataAsString());
+  
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName("Raw data");
+  var startRow = 53366;
+  var lastRowInSheet = sheet.getLastRow();
+  
+  var lastTimestampInSheet = new Date(sheet.getRange("G" + lastRowInSheet).getValue());
+  var timeZone = Session.getScriptTimeZone();
+  var formattedLastTimestampInSheet = Utilities.formatDate(lastTimestampInSheet, timeZone, "yyyy-MM-dd'T'HH:mm:ss'Z'");
+  
+  var newRows = [];
+
+  for (var i = 1; i < csvData.length; i++) {
+    var rowDate = new Date(csvData[i][6]);
+    var formattedRowDate = Utilities.formatDate(rowDate, timeZone, "yyyy-MM-dd'T'HH:mm:ss'Z'");
+
+    if (formattedRowDate > formattedLastTimestampInSheet) {
+      csvData[i].splice(10, 1);
+      newRows.push(csvData[i]);
+    }
+  }
+
+  if (newRows.length > 0) {
+    var range = sheet.getRange(lastRowInSheet + 1, 1, newRows.length, newRows[0].length);
+    range.setValues(newRows);
+  }
+
+  if (newRows.length > 0) {
+    startRow = lastRowInSheet + 1;
+  }
+  
+  var lastRow = sheet.getLastRow();
+
+  var columnI = sheet.getRange("I" + startRow + ":I" + lastRow).getValues();
+  var columnK = sheet.getRange("K" + startRow + ":K" + lastRow);
+  var columnF = sheet.getRange("F" + startRow + ":F" + lastRow);
+  var columnJ = sheet.getRange("J" + startRow + ":J" + lastRow).getValues();
+
+  for (var i = 0; i < columnI.length; i++) {
+    var location = columnI[i][0];
+
+    // Replace locations in column I and copy to column K
+    if (location === "Penang") {
+      columnI[i][0] = "MY";
+      columnK.getCell(i + 1, 1).setValue("Penang");
+    } else if (location === "Johor Bahru, Johor, Malaysia") {
+      columnI[i][0] = "MY";
+      columnK.getCell(i + 1, 1).setValue("JB");
+    } else if (location === "Head Office - KL") {
+      columnI[i][0] = "MY";
+      columnK.getCell(i + 1, 1).setValue("KL");
+    } else if (location === "Bangkok") {
+      columnI[i][0] = "TH";
+    } else if (location === "Manila") {
+      columnI[i][0] = "PH";
+    }
+
+    // Replace candidate owner in column F
+    if (columnF.getValues()[i][0] === "People Bot") {
+      if (columnJ[i][0] === "Nutthamon Techawathanakij,Nach Mothina" || columnJ[i][0] === "Nach Mothina,Nutthamon Techawathanakij") {
+        columnF.getCell(i + 1, 1).setValue("Nach Mothina");
+      } else {
+        columnF.getCell(i + 1, 1).setValue(columnJ[i][0]);
+      }
+    }
+  }
+
+  // Write back the modified values
+  sheet.getRange("I" + startRow + ":I" + lastRow).setValues(columnI);
+
+  // Set columns L, M, N with the date formatting
+  for (var i = startRow; i <= lastRow; i++) {
+    // Set column L
+    sheet.getRange("L" + i).setFormula('=TEXT(DATEVALUE(LEFT(G' + i + ', 10)), "mmmm d")');
+
+    // Set column M
+    sheet.getRange("M" + i).setFormula('=TEXT(DATEVALUE(G' + i + '), "mmmm")');
+
+    // Set column N
+    sheet.getRange("N" + i).setFormula('=TEXT(DATEVALUE(LEFT(G' + i + ', 10)) - MOD(WEEKDAY(DATEVALUE(LEFT(G' + i + ', 10))) - 2, 7), "mmm d") & " - " & TEXT(DATEVALUE(LEFT(G' + i + ', 10)) - MOD(WEEKDAY(DATEVALUE(LEFT(G' + i + ', 10))) - 2, 7) + 6, "mmm d")');
+  }
+}
